@@ -1,0 +1,71 @@
+{% extends 'layout.html' %}
+
+{% block title %} Deposit {% endblock%}
+
+{% block body %}
+<section class="section">
+    <div class="row">
+        <div class="col-md-8">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Deposit</h5>
+                    <!-- Table with stripped rows -->
+                    <table class="table datatable">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for data in deposit %}
+                        <tr>
+                            <th scope="row">{{loop.index}}</th>
+                            <td>{{data[1]}}</td>
+                            <td>{{data[2]}}</td>
+                            <td>{{data[3]}}</td>
+                            <td>{{data[4]}}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <!-- End Table with stripped rows -->
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Deposit</h5>
+                    <!-- Multi Columns Form -->
+                    <form class="row" action="/deposit?action=add" method="POST">
+                        <div class="col-md-12">
+                            <label class="form-label">Type</label>
+                            <input type="text" class="form-control" name="type" required>
+                        </div>
+                        <div class="col-md-12">
+                            <label class="form-label">Amount</label>
+                            <input type="number" class="form-control" name="amount" required>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label for="description" class="col-sm-4 col-form-label">Description</label>
+                            <textarea class="form-control" style="height: 100px;" name="description">N/A</textarea>
+                        </div>
+                        <div class="text-center" style="margin-top: 22px !important;">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <!-- <button type="reset" class="btn btn-secondary">Reset</button> -->
+                        </div>
+                    </form><!-- End Multi Columns Form -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock%}
